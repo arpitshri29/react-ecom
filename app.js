@@ -21,7 +21,7 @@ mongoose.connect(process.env.DATABASE, {
 // Routes middleware
 app.use("/api", userRoutes);
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
    console.log(`Server is running on port ${port}`);
