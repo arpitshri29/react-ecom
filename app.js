@@ -19,7 +19,7 @@ mongoose.connect(process.env.DATABASE, {
 });
 
 // Routes middleware
-app.use(userRoutes);
+app.use("/api", userRoutes);
 
 const port = process.env.PORT || 8000
 
