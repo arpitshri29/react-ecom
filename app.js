@@ -1,8 +1,20 @@
+// Require
 const express = require('express');
-const app = express();
-
+const mongoose = require('mongoose');
 require('dotenv').config();
 
+// App
+const app = express();
+
+// Database
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log('Database connected');
+});
+
+// Routes
 app.get('/', (req, res) => {
     res.send('Hello from node!')
 });
