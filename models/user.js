@@ -53,11 +53,11 @@ userSchema.virtual('password')
         return this._password;
     });
 
+
+// Adding encryptPassword method to userSchema
 userSchema.methods = {
     encryptPassword: function (password) {
-        if (!password) {
-            return ''
-        };
+        if (!password) return '';
 
         try {
             return crypto.createHmac('sha1', this.salt)
@@ -69,4 +69,5 @@ userSchema.methods = {
     }
 };
 
+// Create and export new 'User' model based on 'userSchema'
 module.exports = mongoose.model('User', userSchema);
