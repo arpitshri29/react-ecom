@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { errorHandler } = require('../helpers/dbErrorHandler');
 
 exports.signup = (req, res) => {
     console.log('req.body',req.body);
@@ -6,9 +7,14 @@ exports.signup = (req, res) => {
     user.save((err, user) => {
         if (err){
             return res.status(400).json({
-                err
-            })
+                err: errorHandler(err)
+            });
         }
+
+        // To hide the salt and hashed password in response
+        user.salt = undefined;
+        user.hashed_password = undefined;
+
         res.json({
             user
         });
